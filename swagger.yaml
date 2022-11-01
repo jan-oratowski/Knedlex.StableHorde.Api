@@ -1,0 +1,1543 @@
+swagger: '2.0'
+basePath: /api
+paths:
+  /v2/find_user:
+    get:
+      responses:
+        '200':
+          description: Worker Details
+          schema:
+            $ref: '#/definitions/UserDetailsStable'
+        '404':
+          description: User Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Lookup user details based on their API key
+      description: This can be used to verify a user exists
+      operationId: get_find_user
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          description: User API key we're looking for
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/generate/async:
+    post:
+      responses:
+        '202':
+          description: Generation Queued
+          schema:
+            $ref: '#/definitions/RequestAsync'
+        '400':
+          description: Validation Error
+          schema:
+            $ref: '#/definitions/RequestError'
+        '401':
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        '429':
+          description: Too Many Prompts
+          schema:
+            $ref: '#/definitions/RequestError'
+        '503':
+          description: Maintenance Mode
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Initiate an Asynchronous request to generate images
+      description: >-
+        This endpoint will immediately return with the UUID of the request for
+        generation.
+
+        This endpoint will always be accepted, even if there are no workers
+        available currently to fulfill this request. 
+
+        Perhaps some will appear in the next 10 minutes.
+
+        Asynchronous requests live for 10 minutes before being considered stale
+        and being deleted.
+      operationId: post_async_generate
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          required: true
+          description: The API Key corresponding to a registered user
+        - name: payload
+          required: true
+          in: body
+          schema:
+            $ref: '#/definitions/GenerationInput'
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/generate/check/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+    get:
+      responses:
+        '200':
+          description: Async Request Status Check
+          schema:
+            $ref: '#/definitions/RequestStatusCheck'
+        '404':
+          description: Request Not found
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Retrieve the status of an Asynchronous generation request without images
+      description: >-
+        Use this request to check the status of a currently running asynchronous
+        request without consuming bandwidth.
+      operationId: get_async_check
+      parameters:
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/generate/pop:
+    post:
+      responses:
+        '200':
+          description: Generation Popped
+          schema:
+            $ref: '#/definitions/GenerationPayload'
+        '400':
+          description: Validation Error
+          schema:
+            $ref: '#/definitions/RequestError'
+        '401':
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        '403':
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Check if there are generation requests queued for fulfillment
+      description: This endpoint is used by registered workers only
+      operationId: post_job_pop
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          required: true
+          description: The API Key corresponding to a registered user
+        - name: payload
+          required: true
+          in: body
+          schema:
+            $ref: '#/definitions/PopInputStable'
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/generate/status/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+    get:
+      responses:
+        '200':
+          description: Async Request Full Status
+          schema:
+            $ref: '#/definitions/RequestStatusStable'
+        '404':
+          description: Request Not found
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Retrieve the full status of an Asynchronous generation request
+      description: >-
+        This request will include all already generated images in base64 encoded
+        .webp files.
+
+        As such, you are requested to not retrieve this endpoint often. Instead
+        use the /check/ endpoint first
+
+        This endpoint is limited to 1 request per minute
+      operationId: get_async_status
+      parameters:
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+    delete:
+      responses:
+        '200':
+          description: Async Request Full Status
+          schema:
+            $ref: '#/definitions/RequestStatusStable'
+        '404':
+          description: Request Not found
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Cancel an unfinished request
+      description: >-
+        This request will include all already generated images in base64 encoded
+        .webp files.
+      operationId: delete_async_status
+      parameters:
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/generate/submit:
+    post:
+      responses:
+        '200':
+          description: Generation Submitted
+          schema:
+            $ref: '#/definitions/GenerationSubmitted'
+        '400':
+          description: Generation Already Submitted
+          schema:
+            $ref: '#/definitions/RequestError'
+        '401':
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        '403':
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+        '404':
+          description: Request Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Submit a generated image
+      description: This endpoint is used by registered workers only
+      operationId: post_job_submit
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          required: true
+          description: The worker's owner API key
+        - name: payload
+          required: true
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              generation:
+                type: string
+              seed:
+                type: string
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/generate/sync:
+    post:
+      responses:
+        '200':
+          description: Images Generated
+          schema:
+            $ref: '#/definitions/RequestStatusStable'
+        '400':
+          description: Validation Error
+          schema:
+            $ref: '#/definitions/RequestError'
+        '401':
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        '429':
+          description: Too Many Prompts
+          schema:
+            $ref: '#/definitions/RequestError'
+        '503':
+          description: Maintenance Mode
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Initiate a Synchronous request to generate images
+      description: >-
+        This connection will only terminate when the images have been generated,
+        or an error occured.
+
+        If you connection is interrupted, you will not have the request UUID, so
+        you cannot retrieve the images asynchronously.
+      operationId: post_sync_generate
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          required: true
+          description: The API Key corresponding to a registered user
+        - name: payload
+          required: true
+          in: body
+          schema:
+            $ref: '#/definitions/GenerationInput'
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/kudos/transfer:
+    post:
+      responses:
+        '200':
+          description: Generation Submitted
+          schema:
+            $ref: '#/definitions/KudosTransferred'
+        '400':
+          description: Validation Error
+          schema:
+            $ref: '#/definitions/RequestError'
+        '401':
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Transfer Kudos to another registed user
+      operationId: post_transfer_kudos
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          required: true
+          description: The sending user's API key
+        - name: payload
+          required: true
+          in: body
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              amount:
+                type: integer
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/status/models:
+    get:
+      responses:
+        '200':
+          description: List All Active Models
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ActiveModel'
+      summary: Returns a list of models active currently in this horde
+      operationId: get_models
+      parameters:
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/status/modes:
+    get:
+      responses:
+        '200':
+          description: Horde Maintenance
+          schema:
+            $ref: '#/definitions/HordeModes'
+      summary: Horde Maintenance Mode Status
+      description: >-
+        Use this endpoint to quicky determine if this horde is in maintenance,
+        invite_only or raid mode.
+      operationId: get_horde_modes
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          description: The Admin or Owner API key
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+    put:
+      responses:
+        '200':
+          description: Maintenance Mode Set
+          schema:
+            $ref: '#/definitions/HordeModes'
+        '401':
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        '403':
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Change Horde Modes
+      description: >-
+        Endpoint for admins to (un)set the horde into maintenance, invite_only
+        or raid modes.
+      operationId: put_horde_modes
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          required: true
+          description: The Admin API key
+        - name: payload
+          required: true
+          in: body
+          schema:
+            type: object
+            properties:
+              maintenance:
+                type: boolean
+              invite_only:
+                type: boolean
+              raid:
+                type: boolean
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/status/news:
+    get:
+      responses:
+        '200':
+          description: Horde News
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Newspiece'
+      summary: Read the latest happenings on the horde
+      operationId: get_horde_news
+      parameters:
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/status/performance:
+    get:
+      responses:
+        '200':
+          description: Horde Maintenance
+          schema:
+            $ref: '#/definitions/HordePerformanceStable'
+      summary: Details about the current performance of this Horde
+      operationId: get_horde_load
+      parameters:
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/users:
+    get:
+      responses:
+        '200':
+          description: Users List
+          schema:
+            $ref: '#/definitions/UserDetailsStable'
+      summary: A List with the details and statistic of all registered users
+      operationId: get_users
+      parameters:
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/users/{user_id}:
+    parameters:
+      - name: user_id
+        in: path
+        required: true
+        type: string
+    get:
+      responses:
+        '200':
+          description: User Details
+          schema:
+            $ref: '#/definitions/UserDetailsStable'
+        '404':
+          description: User Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Details and statistics about a specific user
+      operationId: get_user_single
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          description: The Admin, Mod or Owner API key
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+    put:
+      responses:
+        '200':
+          description: Modify User
+          schema:
+            $ref: '#/definitions/ModifyUser'
+        '400':
+          description: Validation Error
+          schema:
+            $ref: '#/definitions/RequestError'
+        '401':
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        '403':
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+        '404':
+          description: Worker Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Endpoint for horde admins to perform operations on users
+      operationId: put_user_single
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          required: true
+          description: The Admin API key
+        - name: payload
+          required: true
+          in: body
+          schema:
+            type: object
+            properties:
+              kudos:
+                type: integer
+              concurrency:
+                type: integer
+              usage_multiplier:
+                type: number
+              worker_invite:
+                type: integer
+              moderator:
+                type: boolean
+              public_workers:
+                type: boolean
+              username:
+                type: string
+              monthly_kudos:
+                type: integer
+              trusted:
+                type: boolean
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/workers:
+    get:
+      responses:
+        '200':
+          description: Workers List
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/WorkerDetailsStable'
+      summary: A List with the details of all registered and active workers
+      operationId: get_workers
+      parameters:
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+  /v2/workers/{worker_id}:
+    parameters:
+      - name: worker_id
+        in: path
+        required: true
+        type: string
+    get:
+      responses:
+        '200':
+          description: Worker Details
+          schema:
+            $ref: '#/definitions/WorkerDetailsStable'
+        '401':
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        '403':
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+        '404':
+          description: Worker Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Details of a registered worker
+      description: |-
+        Can retrieve the details of a worker even if inactive
+        (A worker is considered inactive if it has not checked in for 5 minutes)
+      operationId: get_worker_single
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          description: The Moderator or Owner API key
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+    delete:
+      responses:
+        '200':
+          description: Delete Worker
+          schema:
+            $ref: '#/definitions/DeletedWorker'
+        '401':
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        '403':
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+        '404':
+          description: Worker Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Delete the worker entry
+      description: >-
+        This will delete the worker and their statistics. Will not affect the
+        kudos generated by that worker for their owner.
+
+        Only the worker's owner and an admin can use this endpoint.
+
+        This action is unrecoverable!
+      operationId: delete_worker_single
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          description: The Moderator or Owner API key
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+    put:
+      responses:
+        '200':
+          description: Modify Worker
+          schema:
+            $ref: '#/definitions/ModifyWorker'
+        '400':
+          description: Validation Error
+          schema:
+            $ref: '#/definitions/RequestError'
+        '401':
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        '403':
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+        '404':
+          description: Worker Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+      summary: Put the worker into maintenance or pause mode
+      description: >-
+        Maintenance can be set by the owner of the serve or an admin. 
+
+        When in maintenance, the worker will receive a 503 request when trying
+        to retrieve new requests. Use this to avoid disconnecting your worker in
+        the middle of a generation
+
+        Paused can be set only by the admins of this Horde.
+
+        When in paused mode, the worker will not be given any requests to
+        generate.
+      operationId: put_worker_single
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          required: true
+          description: The Moderator or Owner API key
+        - name: payload
+          required: true
+          in: body
+          schema:
+            type: object
+            properties:
+              maintenance:
+                type: boolean
+              paused:
+                type: boolean
+              info:
+                type: string
+              name:
+                type: string
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+info:
+  title: Stable Horde
+  version: '2.0'
+  description: The API documentation for the Stable Horde
+produces:
+  - application/json
+consumes:
+  - application/json
+tags:
+  - name: v2
+    description: API Version 2
+definitions:
+  GenerationInput:
+    required:
+      - prompt
+    properties:
+      prompt:
+        type: string
+        description: The prompt which will be sent to Stable Diffusion to generate an image
+        minLength: 1
+      params:
+        $ref: '#/definitions/ModelGenerationInputStable'
+      nsfw:
+        type: boolean
+        description: >-
+          Set to true if this request is NSFW. This will skip workers which
+          censor images.
+        default: false
+      trusted_workers:
+        type: boolean
+        description: >-
+          When true, only trusted workers will serve this request. When False,
+          Evaluating workers will also be used which can increase speed but adds
+          more risk!
+        default: true
+      censor_nsfw:
+        type: boolean
+        description: >-
+          If the request is SFW, and the worker accidentaly generates NSFW, it
+          will send back a censored image.
+        default: false
+      workers:
+        type: array
+        items:
+          type: string
+          description: Specify which workers are allowed to service this request
+      models:
+        type: array
+        items:
+          type: string
+          description: Specify which models are allowed to be used for this request
+      source_image:
+        type: string
+        description: The Base64-encoded webp to use for img2img
+      source_processing:
+        type: string
+        description: If source_image is provided, specifies how to process it.
+        default: img2img
+        example: img2img
+        enum:
+          - img2img
+          - inpainting
+          - outpainting
+      source_mask:
+        type: string
+        description: >-
+          If source_processing is set to 'inpainting' or 'outpainting', this
+          parameter can be optionally provided as the  Base64-encoded webp mask
+          of the areas to inpaint. If this arg is not passed, the
+          inpainting/outpainting mask has to be embedded as alpha channel
+    type: object
+  ModelGenerationInputStable:
+    allOf:
+      - $ref: '#/definitions/ModelPayloadRootStable'
+      - properties:
+          steps:
+            type: integer
+            example: 50
+            minimum: 1
+            maximum: 100
+          'n':
+            type: integer
+            description: The amount of images to generate
+            example: 1
+            minimum: 1
+            maximum: 20
+        type: object
+  ModelPayloadRootStable:
+    properties:
+      sampler_name:
+        type: string
+        default: k_euler
+        example: k_lms
+        enum:
+          - k_lms
+          - k_heun
+          - k_euler
+          - k_euler_a
+          - k_dpm_2
+          - k_dpm_2_a
+          - DDIM
+          - PLMS
+      toggles:
+        type: array
+        description: >-
+          Obsolete Toggles used in the SD Webui. To be removed. Do not modify
+          unless you know what you're doing.
+        example:
+          - 1
+          - 4
+        items:
+          type: integer
+      cfg_scale:
+        type: number
+        default: 5
+        minimum: -40
+        maximum: 30
+        multipleOf: 0.5
+      denoising_strength:
+        type: number
+        example: 0.75
+        minimum: 0
+        maximum: 1
+        multipleOf: 0.01
+      seed:
+        type: string
+        description: The seed to use to generete this request
+      height:
+        type: integer
+        description: The height of the image to generate
+        default: 512
+        minimum: 64
+        maximum: 1024
+        multipleOf: 64
+      width:
+        type: integer
+        description: The width of the image to generate
+        default: 512
+        minimum: 64
+        maximum: 1024
+        multipleOf: 64
+      seed_variation:
+        type: integer
+        description: >-
+          If passed with multiple n, the provided seed will be incremented every
+          time by this value
+        example: 1
+        minimum: 1
+        maximum: 1000
+      use_gfpgan:
+        type: boolean
+        description: >-
+          Set to true to process the generated image with GFPGAN (face
+          correction)
+      use_real_esrgan:
+        type: boolean
+        description: Set to true to process the generated image with RealESRGAN
+      use_ldsr:
+        type: boolean
+        description: Set to true to process the generated image with LDSR
+      use_upscaling:
+        type: boolean
+        description: Set to true to upscale the image
+    type: object
+  RequestError:
+    properties:
+      message:
+        type: string
+        description: The error message for this status code.
+    type: object
+  RequestStatusStable:
+    allOf:
+      - $ref: '#/definitions/RequestStatusCheck'
+      - properties:
+          generations:
+            type: array
+            items:
+              $ref: '#/definitions/GenerationStable'
+        type: object
+  RequestStatusCheck:
+    properties:
+      finished:
+        type: integer
+        description: The amount of finished images in this request
+      processing:
+        type: integer
+        description: The amount of still processing images in this request
+      waiting:
+        type: integer
+        description: The amount of images waiting to be picked up by a worker
+      done:
+        type: boolean
+        description: True when all images in this request are done. Else False.
+      faulted:
+        type: boolean
+        description: >-
+          True when this request caused an internal server error and cannot be
+          completed.
+        default: false
+      wait_time:
+        type: integer
+        description: >-
+          The expected amount to wait (in seconds) to generate all images in
+          this request
+      queue_position:
+        type: integer
+        description: >-
+          The position in the requests queue. This position is determined by
+          relative Kudos amounts.
+    type: object
+  GenerationStable:
+    allOf:
+      - $ref: '#/definitions/Generation'
+      - properties:
+          img:
+            type: string
+            title: Generated Image
+            description: The generated image as a Base64-encoded .webp file
+          seed:
+            type: string
+            title: Generation Seed
+            description: The seed which generated this image
+        type: object
+  Generation:
+    properties:
+      worker_id:
+        type: string
+        title: Worker ID
+        description: The UUID of the worker which generated this image
+      worker_name:
+        type: string
+        title: Worker Name
+        description: The name of the worker which generated this image
+      model:
+        type: string
+        title: Generation Model
+        description: The model which generated this image
+    type: object
+  RequestAsync:
+    properties:
+      id:
+        type: string
+        description: >-
+          The UUID of the request. Use this to retrieve the request status in
+          the future
+      message:
+        type: string
+        description: Any extra information from the horde about this request
+    type: object
+  PopInputStable:
+    allOf:
+      - $ref: '#/definitions/PopInput'
+      - properties:
+          max_pixels:
+            type: integer
+            description: The maximum amount of pixels this worker can generate
+            default: 262144
+          allow_img2img:
+            type: boolean
+            description: If True, this worker will pick up img2img requests
+            default: true
+          allow_painting:
+            type: boolean
+            description: If True, this worker will pick up inpainting/outpainting requests
+            default: true
+          allow_unsafe_ipaddr:
+            type: boolean
+            description: >-
+              If True, this worker will pick up img2img requests coming from
+              clients with an unsafe IP.
+            default: true
+        type: object
+  PopInput:
+    properties:
+      name:
+        type: string
+        description: The Name of the Worker
+      priority_usernames:
+        type: array
+        items:
+          type: string
+          description: Users with priority to use this worker
+      nsfw:
+        type: boolean
+        description: Whether this worker can generate NSFW requests or not.
+        default: false
+      blacklist:
+        type: array
+        items:
+          type: string
+          description: Words which, when detected will refuste to pick up any jobs
+      models:
+        type: array
+        items:
+          type: string
+          description: Which models this worker is serving
+      bridge_version:
+        type: integer
+        description: The version of the bridge used by this worker
+        default: 1
+    type: object
+  GenerationPayload:
+    properties:
+      payload:
+        $ref: '#/definitions/ModelPayloadStable'
+      id:
+        type: string
+        description: The UUID for this image generation
+      skipped:
+        $ref: '#/definitions/NoValidRequestFoundStable'
+      model:
+        type: string
+        description: Which of the available models to use for this request
+      source_image:
+        type: string
+        description: The Base64-encoded webp to use for img2img
+      source_processing:
+        type: string
+        description: If source_image is provided, specifies how to process it.
+        default: img2img
+        example: img2img
+        enum:
+          - img2img
+          - inpainting
+          - outpainting
+      source_mask:
+        type: string
+        description: >-
+          If img_processing is set to 'inpainting' or 'outpainting', this
+          parameter can be optionally provided as the mask of the areas to
+          inpaint. If this arg is not passed, the inpainting/outpainting mask
+          has to be embedded as alpha channel
+    type: object
+  ModelPayloadStable:
+    allOf:
+      - $ref: '#/definitions/ModelPayloadRootStable'
+      - properties:
+          prompt:
+            type: string
+            description: >-
+              The prompt which will be sent to Stable Diffusion to generate an
+              image
+          ddim_steps:
+            type: integer
+            default: 30
+          n_iter:
+            type: integer
+            description: The amount of images to generate
+            default: 1
+          use_nsfw_censor:
+            type: boolean
+            description: When true will apply NSFW censoring model on the generation
+        type: object
+  NoValidRequestFoundStable:
+    allOf:
+      - $ref: '#/definitions/NoValidRequestFound'
+      - properties:
+          max_pixels:
+            type: integer
+            description: >-
+              How many waiting requests were skipped because they demanded a
+              higher size than this worker provides
+          unsafe_ip:
+            type: integer
+            description: >-
+              How many waiting requests were skipped because they came from an
+              unsafe IP
+          img2img:
+            type: integer
+            description: >-
+              How many waiting requests were skipped because they requested
+              img2img
+          painting:
+            type: integer
+            description: >-
+              How many waiting requests were skipped because they requested
+              inpainting/outpainting
+        type: object
+  NoValidRequestFound:
+    properties:
+      worker_id:
+        type: integer
+        description: >-
+          How many waiting requests were skipped because they demanded a
+          specific worker
+      performance:
+        type: integer
+        description: >-
+          How many waiting requests were skipped because they demanded a
+          specific worker
+      nsfw:
+        type: integer
+        description: >-
+          How many waiting requests were skipped because they demanded a nsfw
+          generation which this worker does not provide.
+      blacklist:
+        type: integer
+        description: >-
+          How many waiting requests were skipped because they demanded a
+          generation with a word that this worker does not accept.
+      untrusted:
+        type: integer
+        description: >-
+          How many waiting requests were skipped because they demanded a trusted
+          worker which this worker is not.
+      models:
+        type: integer
+        description: >-
+          How many waiting requests were skipped because they demanded a
+          different model than what this worker provides.
+        example: 0
+    type: object
+  GenerationSubmitted:
+    properties:
+      reward:
+        type: number
+        description: The amount of kudos gained for submitting this request
+        example: 10
+    type: object
+  UserDetailsStable:
+    allOf:
+      - $ref: '#/definitions/UserDetails'
+      - properties:
+          kudos_details:
+            $ref: '#/definitions/UserKudosDetails'
+          usage:
+            $ref: '#/definitions/UsageDetailsStable'
+          contributions:
+            $ref: '#/definitions/ContributionsDetailsStable'
+        type: object
+  UserDetails:
+    properties:
+      username:
+        type: string
+        description: >-
+          The user's unique Username. It is a combination of their chosen alias
+          plus their ID.
+      id:
+        type: integer
+        description: The user unique ID. It is always an integer.
+      kudos:
+        type: number
+        description: >-
+          The amount of Kudos this user has. The amount of Kudos determines the
+          priority when requesting image generations.
+      evaluating_kudos:
+        type: number
+        description: >-
+          (Privileged) The amount of Evaluating Kudos this untrusted user has
+          from generations and uptime. When this number reaches a prespecified
+          threshold, they automatically become trusted.
+      concurrency:
+        type: integer
+        description: How many concurrent generations this user may request.
+      worker_invited:
+        type: integer
+        description: >-
+          Whether this user has been invited to join a worker to the horde and
+          how many of them. When 0, this user cannot add (new) workers to the
+          horde.
+      moderator:
+        type: boolean
+        description: This user is a Horde moderator.
+        example: false
+      kudos_details:
+        $ref: '#/definitions/UserKudosDetails'
+      worker_count:
+        type: integer
+        description: How many workers this user has created (active or inactive)
+      worker_ids:
+        type: array
+        items:
+          type: string
+          description: >-
+            Privileged or public when the user has explicitly allows it to be
+            public.
+      monthly_kudos:
+        $ref: '#/definitions/MonthlyKudos'
+      trusted:
+        type: boolean
+        description: This user is a trusted member of the Horde.
+        example: false
+      suspicious:
+        type: integer
+        description: (Privileged) How much suspicion this user has accumulated
+        example: 0
+      pseudonymous:
+        type: boolean
+        description: If true, this user has not registered using an oauth service.
+        example: false
+    type: object
+  UserKudosDetails:
+    properties:
+      accumulated:
+        type: number
+        description: The ammount of Kudos accumulated or used for generating images.
+        default: 0
+      gifted:
+        type: number
+        description: The amount of Kudos this user has given to other users.
+        default: 0
+      admin:
+        type: number
+        description: The amount of Kudos this user has been given by the Horde admins.
+        default: 0
+      received:
+        type: number
+        description: The amount of Kudos this user has been given by other users.
+        default: 0
+      recurring:
+        type: number
+        description: The amount of Kudos this user has received from recurring rewards.
+        default: 0
+    type: object
+  MonthlyKudos:
+    properties:
+      amount:
+        type: integer
+        description: How much recurring Kudos this user receives monthly.
+      last_received:
+        type: string
+        format: date-time
+        description: Last date this user received monthly Kudos.
+    type: object
+  UsageDetailsStable:
+    allOf:
+      - $ref: '#/definitions/UsageDetails'
+      - properties:
+          megapixelsteps:
+            type: number
+            description: How many megapixelsteps this user has requested
+        type: object
+  UsageDetails:
+    properties:
+      requests:
+        type: integer
+        description: How many images this user has requested
+    type: object
+  ContributionsDetailsStable:
+    allOf:
+      - $ref: '#/definitions/ContributionsDetails'
+      - properties:
+          megapixelsteps:
+            type: number
+            description: How many megapixelsteps this user has generated
+        type: object
+  ContributionsDetails:
+    properties:
+      fulfillments:
+        type: integer
+        description: How many images this user has generated
+    type: object
+  ModifyUser:
+    properties:
+      new_kudos:
+        type: number
+        description: The new total Kudos this user has after this request
+      concurrency:
+        type: integer
+        description: The request concurrency this user has after this request
+        example: 30
+      usage_multiplier:
+        type: number
+        description: Multiplies the amount of kudos lost when generating images.
+        example: 1
+      worker_invited:
+        type: integer
+        description: >-
+          Whether this user has been invited to join a worker to the horde and
+          how many of them. When 0, this user cannot add (new) workers to the
+          horde.
+        example: 1
+      moderator:
+        type: boolean
+        description: The user's new moderator status.
+        example: false
+      public_workers:
+        type: boolean
+        description: The user's new public_workers status.
+        example: false
+      username:
+        type: string
+        description: The user's new username.
+        example: username#1
+      monthly_kudos:
+        type: integer
+        description: The user's new monthly kudos total
+        example: 0
+      trusted:
+        type: boolean
+        description: The user's new trusted status
+    type: object
+  WorkerDetailsStable:
+    allOf:
+      - $ref: '#/definitions/WorkerDetails'
+      - properties:
+          max_pixels:
+            type: integer
+            description: The maximum pixels in resolution this worker can generate
+            example: 262144
+          megapixelsteps_generated:
+            type: number
+            description: How many megapixelsteps this worker has generated until now
+          img2img:
+            type: boolean
+            description: If True, this worker supports and allows img2img requests.
+            default: true
+          painting:
+            type: boolean
+            description: If True, this worker supports and allows inpainting requests.
+            default: true
+        type: object
+  WorkerDetails:
+    properties:
+      name:
+        type: string
+        description: The Name given to this worker.
+      id:
+        type: string
+        description: The UUID of this worker.
+      requests_fulfilled:
+        type: integer
+        description: How many images this worker has generated.
+      kudos_rewards:
+        type: number
+        description: How many Kudos this worker has been rewarded in total.
+      kudos_details:
+        $ref: '#/definitions/WorkerKudosDetails'
+      performance:
+        type: string
+        description: The average performance of this worker in human readable form.
+      uptime:
+        type: integer
+        description: The amount of seconds this worker has been online for this Horde.
+      maintenance_mode:
+        type: boolean
+        description: When True, this worker will not pick up any new requests
+        example: false
+      paused:
+        type: boolean
+        description: (Privileged) When True, this worker not be given any new requests.
+        example: false
+      info:
+        type: string
+        description: Extra information or comments about this worker provided by its owner.
+        example: https://dbzer0.com
+      nsfw:
+        type: boolean
+        description: Whether this worker can generate NSFW requests or not.
+        default: false
+      owner:
+        type: string
+        description: >-
+          Privileged or public if the owner has allowed it. The alias of the
+          owner of this worker.
+        example: username#1
+      trusted:
+        type: boolean
+        description: The worker is trusted to return valid generations.
+      suspicious:
+        type: integer
+        description: (Privileged) How much suspicion this worker has accumulated
+        example: 0
+      models:
+        type: array
+        items:
+          type: string
+          description: Which models this worker if offerring
+    type: object
+  WorkerKudosDetails:
+    properties:
+      generated:
+        type: number
+        description: How much Kudos this worker has received for generating images
+      uptime:
+        type: integer
+        description: How much Kudos this worker has received for staying online longer
+    type: object
+  DeletedWorker:
+    properties:
+      deleted_id:
+        type: string
+        description: The ID of the deleted worker
+      deleted_name:
+        type: string
+        description: The Name of the deleted worker
+    type: object
+  ModifyWorker:
+    properties:
+      maintenance:
+        type: boolean
+        description: >-
+          The new state of the 'maintenance' var for this worker. When True,
+          this worker will not pick up any new requests.
+      paused:
+        type: boolean
+        description: >-
+          The new state of the 'paused' var for this worker. When True, this
+          worker will not be given any new requests.
+      info:
+        type: string
+        description: The new state of the 'info' var for this worker.
+      name:
+        type: string
+        description: The new name for this this worker.
+    type: object
+  KudosTransferred:
+    properties:
+      transferred:
+        type: integer
+        description: The amount of Kudos tranferred
+        example: 100
+    type: object
+  HordeModes:
+    properties:
+      maintenance_mode:
+        type: boolean
+        description: >-
+          When True, this Horde will not accept new requests for image
+          generation, but will finish processing the ones currently in the
+          queue.
+      invite_only_mode:
+        type: boolean
+        description: >-
+          When True, this Horde will not only accept worker explicitly invited
+          to join.
+      raid_mode:
+        type: boolean
+        description: >-
+          When True, this Horde will not always provide full information in
+          order to throw off attackers.
+    type: object
+  HordePerformanceStable:
+    allOf:
+      - $ref: '#/definitions/HordePerformance'
+      - properties:
+          queued_requests:
+            type: integer
+            description: >-
+              The amount of waiting and processing requests currently in this
+              Horde
+          queued_megapixelsteps:
+            type: number
+            description: >-
+              The amount of megapixelsteps in waiting and processing requests
+              currently in this Horde
+          past_minute_megapixelsteps:
+            type: number
+            description: How many megapixelsteps this Horde generated in the last minute
+          worker_count:
+            type: integer
+            description: >-
+              How many workers are actively processing image generations in this
+              Horde in the past 5 minutes
+        type: object
+  HordePerformance:
+    properties:
+      queued_requests:
+        type: integer
+        description: The amount of waiting and processing requests currently in this Horde
+      worker_count:
+        type: integer
+        description: >-
+          How many workers are actively processing image generations in this
+          Horde in the past 5 minutes
+    type: object
+  ActiveModel:
+    properties:
+      name:
+        type: string
+        description: The Name of a model available by workers in this horde.
+      count:
+        type: integer
+        description: How many of workers in this horde are running this model.
+      performance:
+        type: number
+        description: The average speed of generation for this model
+      queued:
+        type: number
+        description: The amount waiting to be generated by this model
+      eta:
+        type: integer
+        description: Estimated time in seconds for this model's queue to be cleared
+    type: object
+  Newspiece:
+    properties:
+      date_published:
+        type: string
+        description: The date this newspiece was published
+      newspiece:
+        type: string
+        description: The actual piece of news
+      importance:
+        type: string
+        description: How critical this piece of news is.
+        example: Information
+    type: object
+responses:
+  ParseError:
+    description: When a mask can't be parsed
+  MaskError:
+    description: When any error occurs on mask
