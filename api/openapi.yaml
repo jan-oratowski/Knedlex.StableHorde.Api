@@ -2989,7 +2989,7 @@ components:
             param:
               key: "{}"
           image_is_control: false
-          sampler_name: k_lms
+          sampler_name: k_dpmpp_2m
           denoising_strength: 0.75
           width: 504
           seed_variation: 1
@@ -3162,7 +3162,7 @@ components:
           param:
             key: "{}"
         image_is_control: false
-        sampler_name: k_lms
+        sampler_name: k_dpmpp_2m
         denoising_strength: 0.75
         width: 504
         seed_variation: 1
@@ -3186,21 +3186,21 @@ components:
         sampler_name:
           default: k_euler_a
           enum:
-          - k_lms
-          - k_dpmpp_sde
-          - k_euler
-          - k_dpm_2_a
-          - k_euler_a
           - k_dpmpp_2m
           - k_dpm_fast
+          - k_lms
+          - k_dpmpp_sde
+          - DDIM
+          - k_euler_a
           - lcm
+          - k_dpmpp_2s_a
+          - k_dpm_adaptive
           - k_heun
           - dpmsolver
           - k_dpm_2
-          - k_dpm_adaptive
-          - DDIM
-          - k_dpmpp_2s_a
-          example: k_lms
+          - k_euler
+          - k_dpm_2_a
+          example: k_dpmpp_2m
           type: string
         cfg_scale:
           maximum: 100
@@ -4013,7 +4013,7 @@ components:
             param:
               key: "{}"
           image_is_control: false
-          sampler_name: k_lms
+          sampler_name: k_dpmpp_2m
           denoising_strength: 0.75
           width: 504
           seed_variation: 1
@@ -4144,7 +4144,7 @@ components:
           param:
             key: "{}"
         image_is_control: false
-        sampler_name: k_lms
+        sampler_name: k_dpmpp_2m
         denoising_strength: 0.75
         width: 504
         seed_variation: 1
@@ -5860,22 +5860,6 @@ components:
       required:
       - name
       type: object
-    ModifyTeam:
-      example:
-        name: name
-        id: id
-        info: info
-      properties:
-        id:
-          description: The ID of the team.
-          type: string
-        name:
-          description: The Name of the team.
-          type: string
-        info:
-          description: The Info of the team.
-          type: string
-      type: object
     TeamDetails:
       allOf:
       - $ref: '#/components/schemas/TeamDetailsLite'
@@ -5936,6 +5920,22 @@ components:
           type: image
         info: Anarchy is emergent order.
         uptime: 1
+    ModifyTeam:
+      example:
+        name: name
+        id: id
+        info: info
+      properties:
+        id:
+          description: The ID of the team.
+          type: string
+        name:
+          description: The Name of the team.
+          type: string
+        info:
+          description: The Info of the team.
+          type: string
+      type: object
     ModifyTeamInput:
       example:
         name: name
@@ -5965,6 +5965,19 @@ components:
           description: The Name of the deleted team.
           type: string
       type: object
+    DeleteTimeoutIPInput:
+      example:
+        ipaddr: 127.0.0.1
+      properties:
+        ipaddr:
+          description: The IP address or CIDR to remove from timeout.
+          example: 127.0.0.1
+          maxLength: 40
+          minLength: 7
+          type: string
+      required:
+      - ipaddr
+      type: object
     AddTimeoutIPInput:
       example:
         hours: 24
@@ -5984,19 +5997,6 @@ components:
           type: integer
       required:
       - hours
-      - ipaddr
-      type: object
-    DeleteTimeoutIPInput:
-      example:
-        ipaddr: 127.0.0.1
-      properties:
-        ipaddr:
-          description: The IP address or CIDR to remove from timeout.
-          example: 127.0.0.1
-          maxLength: 40
-          minLength: 7
-          type: string
-      required:
       - ipaddr
       type: object
     IPTimeout:
@@ -6352,26 +6352,6 @@ components:
       - filter_type
       - regex
       type: object
-    FilterPromptSuspicion:
-      example:
-        suspicion: "0"
-        matches:
-        - matches
-        - matches
-      properties:
-        suspicion:
-          default: "0"
-          description: Rates how suspicious the provided prompt is. A suspicion over
-            2 means it would be blocked.
-          type: string
-        matches:
-          items:
-            description: Which words in the prompt matched the filters.
-            type: string
-          type: array
-      required:
-      - suspicion
-      type: object
     FilterDetails:
       example:
         regex: ac.param
@@ -6409,6 +6389,26 @@ components:
       - id
       - regex
       - user
+      type: object
+    FilterPromptSuspicion:
+      example:
+        suspicion: "0"
+        matches:
+        - matches
+        - matches
+      properties:
+        suspicion:
+          default: "0"
+          description: Rates how suspicious the provided prompt is. A suspicion over
+            2 means it would be blocked.
+          type: string
+        matches:
+          items:
+            description: Which words in the prompt matched the filters.
+            type: string
+          type: array
+      required:
+      - suspicion
       type: object
     FilterRegex:
       example:

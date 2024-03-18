@@ -1,8 +1,5 @@
-.gitignore
-Knedlex.StableHorde.Api.sln
 README.md
 api/openapi.yaml
-appveyor.yml
 docs/ActiveModel.md
 docs/ActiveModelLite.md
 docs/AddTimeoutIPInput.md
@@ -103,7 +100,6 @@ docs/V2Api.md
 docs/WorkerDetails.md
 docs/WorkerDetailsLite.md
 docs/WorkerKudosDetails.md
-git_push.sh
 src/Knedlex.StableHorde.Api.Test/Knedlex.StableHorde.Api.Test.csproj
 src/Knedlex.StableHorde.Api/Api/V2Api.cs
 src/Knedlex.StableHorde.Api/Client/ApiClient.cs
@@ -122,7 +118,6 @@ src/Knedlex.StableHorde.Api/Client/Multimap.cs
 src/Knedlex.StableHorde.Api/Client/OpenAPIDateConverter.cs
 src/Knedlex.StableHorde.Api/Client/RequestOptions.cs
 src/Knedlex.StableHorde.Api/Client/RetryConfiguration.cs
-src/Knedlex.StableHorde.Api/Knedlex.StableHorde.Api.csproj
 src/Knedlex.StableHorde.Api/Model/AbstractOpenAPISchema.cs
 src/Knedlex.StableHorde.Api/Model/ActiveModel.cs
 src/Knedlex.StableHorde.Api/Model/ActiveModelLite.cs

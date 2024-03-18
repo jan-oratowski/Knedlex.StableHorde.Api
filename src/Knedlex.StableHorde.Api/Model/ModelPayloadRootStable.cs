@@ -38,95 +38,95 @@ namespace Knedlex.StableHorde.Api.Model
         public enum SamplerNameEnum
         {
             /// <summary>
-            /// Enum KLms for value: k_lms
-            /// </summary>
-            [EnumMember(Value = "k_lms")]
-            KLms = 1,
-
-            /// <summary>
-            /// Enum KDpmppSde for value: k_dpmpp_sde
-            /// </summary>
-            [EnumMember(Value = "k_dpmpp_sde")]
-            KDpmppSde = 2,
-
-            /// <summary>
-            /// Enum KEuler for value: k_euler
-            /// </summary>
-            [EnumMember(Value = "k_euler")]
-            KEuler = 3,
-
-            /// <summary>
-            /// Enum KDpm2A for value: k_dpm_2_a
-            /// </summary>
-            [EnumMember(Value = "k_dpm_2_a")]
-            KDpm2A = 4,
-
-            /// <summary>
-            /// Enum KEulerA for value: k_euler_a
-            /// </summary>
-            [EnumMember(Value = "k_euler_a")]
-            KEulerA = 5,
-
-            /// <summary>
             /// Enum KDpmpp2m for value: k_dpmpp_2m
             /// </summary>
             [EnumMember(Value = "k_dpmpp_2m")]
-            KDpmpp2m = 6,
+            KDpmpp2m = 1,
 
             /// <summary>
             /// Enum KDpmFast for value: k_dpm_fast
             /// </summary>
             [EnumMember(Value = "k_dpm_fast")]
-            KDpmFast = 7,
+            KDpmFast = 2,
 
             /// <summary>
-            /// Enum Lcm for value: lcm
+            /// Enum KLms for value: k_lms
             /// </summary>
-            [EnumMember(Value = "lcm")]
-            Lcm = 8,
+            [EnumMember(Value = "k_lms")]
+            KLms = 3,
 
             /// <summary>
-            /// Enum KHeun for value: k_heun
+            /// Enum KDpmppSde for value: k_dpmpp_sde
             /// </summary>
-            [EnumMember(Value = "k_heun")]
-            KHeun = 9,
-
-            /// <summary>
-            /// Enum Dpmsolver for value: dpmsolver
-            /// </summary>
-            [EnumMember(Value = "dpmsolver")]
-            Dpmsolver = 10,
-
-            /// <summary>
-            /// Enum KDpm2 for value: k_dpm_2
-            /// </summary>
-            [EnumMember(Value = "k_dpm_2")]
-            KDpm2 = 11,
-
-            /// <summary>
-            /// Enum KDpmAdaptive for value: k_dpm_adaptive
-            /// </summary>
-            [EnumMember(Value = "k_dpm_adaptive")]
-            KDpmAdaptive = 12,
+            [EnumMember(Value = "k_dpmpp_sde")]
+            KDpmppSde = 4,
 
             /// <summary>
             /// Enum DDIM for value: DDIM
             /// </summary>
             [EnumMember(Value = "DDIM")]
-            DDIM = 13,
+            DDIM = 5,
+
+            /// <summary>
+            /// Enum KEulerA for value: k_euler_a
+            /// </summary>
+            [EnumMember(Value = "k_euler_a")]
+            KEulerA = 6,
+
+            /// <summary>
+            /// Enum Lcm for value: lcm
+            /// </summary>
+            [EnumMember(Value = "lcm")]
+            Lcm = 7,
 
             /// <summary>
             /// Enum KDpmpp2sA for value: k_dpmpp_2s_a
             /// </summary>
             [EnumMember(Value = "k_dpmpp_2s_a")]
-            KDpmpp2sA = 14
+            KDpmpp2sA = 8,
+
+            /// <summary>
+            /// Enum KDpmAdaptive for value: k_dpm_adaptive
+            /// </summary>
+            [EnumMember(Value = "k_dpm_adaptive")]
+            KDpmAdaptive = 9,
+
+            /// <summary>
+            /// Enum KHeun for value: k_heun
+            /// </summary>
+            [EnumMember(Value = "k_heun")]
+            KHeun = 10,
+
+            /// <summary>
+            /// Enum Dpmsolver for value: dpmsolver
+            /// </summary>
+            [EnumMember(Value = "dpmsolver")]
+            Dpmsolver = 11,
+
+            /// <summary>
+            /// Enum KDpm2 for value: k_dpm_2
+            /// </summary>
+            [EnumMember(Value = "k_dpm_2")]
+            KDpm2 = 12,
+
+            /// <summary>
+            /// Enum KEuler for value: k_euler
+            /// </summary>
+            [EnumMember(Value = "k_euler")]
+            KEuler = 13,
+
+            /// <summary>
+            /// Enum KDpm2A for value: k_dpm_2_a
+            /// </summary>
+            [EnumMember(Value = "k_dpm_2_a")]
+            KDpm2A = 14
         }
 
 
         /// <summary>
         /// Gets or Sets SamplerName
         /// </summary>
-        /// <example>k_lms</example>
+        /// <example>k_dpmpp_2m</example>
         [DataMember(Name = "sampler_name", EmitDefaultValue = false)]
         public SamplerNameEnum? SamplerName { get; set; }
         /// <summary>
