@@ -50,6 +50,49 @@ paths:
           description: An optional fields mask
       tags:
         - v2
+    put:
+      responses:
+        "403":
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+        "401":
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        "400":
+          description: Validation Error
+          schema:
+            $ref: '#/definitions/RequestError'
+        "201":
+          description: New Filter details
+          schema:
+            $ref: '#/definitions/FilterDetails'
+      summary: 'Moderator Only: Add a new regex filter'
+      operationId: put_filters
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          required: true
+          description: A mod API key.
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version.
+          default: unknown:0:unknown
+        - name: payload
+          required: true
+          in: body
+          schema:
+            $ref: '#/definitions/PutNewFilter'
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
     get:
       responses:
         "403":
@@ -91,49 +134,6 @@ paths:
           in: query
           type: string
           description: Only return filter containing this word.
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
-    put:
-      responses:
-        "403":
-          description: Access Denied
-          schema:
-            $ref: '#/definitions/RequestError'
-        "401":
-          description: Invalid API Key
-          schema:
-            $ref: '#/definitions/RequestError'
-        "400":
-          description: Validation Error
-          schema:
-            $ref: '#/definitions/RequestError'
-        "201":
-          description: New Filter details
-          schema:
-            $ref: '#/definitions/FilterDetails'
-      summary: 'Moderator Only: Add a new regex filter'
-      operationId: put_filters
-      parameters:
-        - name: apikey
-          in: header
-          type: string
-          required: true
-          description: A mod API key.
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version.
-          default: unknown:0:unknown
-        - name: payload
-          required: true
-          in: body
-          schema:
-            $ref: '#/definitions/PutNewFilter'
         - name: X-Fields
           in: header
           type: string
@@ -192,46 +192,6 @@ paths:
         in: path
         required: true
         type: string
-    get:
-      responses:
-        "403":
-          description: Access Denied
-          schema:
-            $ref: '#/definitions/RequestError'
-        "401":
-          description: Invalid API Key
-          schema:
-            $ref: '#/definitions/RequestError'
-        "400":
-          description: Validation Error
-          schema:
-            $ref: '#/definitions/RequestError'
-        "200":
-          description: Filters List
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/FilterDetails'
-      summary: 'Moderator Only: Display a single filter'
-      operationId: get_filter_single
-      parameters:
-        - name: apikey
-          in: header
-          type: string
-          required: true
-          description: A mod API key.
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version.
-          default: unknown:0:unknown
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
     patch:
       responses:
         "403":
@@ -295,6 +255,46 @@ paths:
             $ref: '#/definitions/SimpleResponse'
       summary: 'Moderator Only: Delete a regex filter'
       operationId: delete_filter_single
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          required: true
+          description: A mod API key.
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version.
+          default: unknown:0:unknown
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+    get:
+      responses:
+        "403":
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+        "401":
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        "400":
+          description: Validation Error
+          schema:
+            $ref: '#/definitions/RequestError'
+        "200":
+          description: Filters List
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/FilterDetails'
+      summary: 'Moderator Only: Display a single filter'
+      operationId: get_filter_single
       parameters:
         - name: apikey
           in: header
@@ -529,6 +529,32 @@ paths:
         in: path
         required: true
         type: string
+    delete:
+      responses:
+        "404":
+          description: Request Not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        "200":
+          description: Async Request Full Status
+          schema:
+            $ref: '#/definitions/RequestStatusStable'
+      summary: Cancel an unfinished request
+      description: This request will include all already generated images in base64 encoded .webp files.
+      operationId: delete_image_async_status
+      parameters:
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version
+          default: unknown:0:unknown
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
     get:
       responses:
         "404":
@@ -545,32 +571,6 @@ paths:
         As such, you are requested to not retrieve this endpoint often. Instead use the /check/ endpoint first
         This endpoint is limited to 10 request per minute
       operationId: get_image_async_status
-      parameters:
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version
-          default: unknown:0:unknown
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
-    delete:
-      responses:
-        "404":
-          description: Request Not found
-          schema:
-            $ref: '#/definitions/RequestError'
-        "200":
-          description: Async Request Full Status
-          schema:
-            $ref: '#/definitions/RequestStatusStable'
-      summary: Cancel an unfinished request
-      description: This request will include all already generated images in base64 encoded .webp files.
-      operationId: delete_image_async_status
       parameters:
         - name: Client-Agent
           in: header
@@ -727,32 +727,6 @@ paths:
         in: path
         required: true
         type: string
-    get:
-      responses:
-        "404":
-          description: Request Not found
-          schema:
-            $ref: '#/definitions/RequestError'
-        "200":
-          description: Async Request Full Status
-          schema:
-            $ref: '#/definitions/RequestStatusKobold'
-      summary: Retrieve the full status of an Asynchronous generation request
-      description: This request will include all already generated texts.
-      operationId: get_text_async_status
-      parameters:
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version
-          default: unknown:0:unknown
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
     delete:
       responses:
         "404":
@@ -766,6 +740,32 @@ paths:
       summary: Cancel an unfinished request
       description: This request will include all already generated texts.
       operationId: delete_text_async_status
+      parameters:
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version
+          default: unknown:0:unknown
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+    get:
+      responses:
+        "404":
+          description: Request Not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        "200":
+          description: Async Request Full Status
+          schema:
+            $ref: '#/definitions/RequestStatusKobold'
+      summary: Retrieve the full status of an Asynchronous generation request
+      description: This request will include all already generated texts.
+      operationId: get_text_async_status
       parameters:
         - name: Client-Agent
           in: header
@@ -922,6 +922,32 @@ paths:
         in: path
         required: true
         type: string
+    delete:
+      responses:
+        "404":
+          description: Request Not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        "200":
+          description: Interrogation Request Status
+          schema:
+            $ref: '#/definitions/InterrogationStatus'
+      summary: Cancel an unfinished interrogation request
+      description: This request will return all already interrogated image results.
+      operationId: delete_interrogation_status
+      parameters:
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version
+          default: unknown:0:unknown
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
     get:
       responses:
         "404":
@@ -937,32 +963,6 @@ paths:
         This request will include all already generated images.
         As such, you are requested to not retrieve this endpoint often. Instead use the /check/ endpoint first
       operationId: get_interrogation_status
-      parameters:
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version
-          default: unknown:0:unknown
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
-    delete:
-      responses:
-        "404":
-          description: Request Not found
-          schema:
-            $ref: '#/definitions/RequestError'
-        "200":
-          description: Interrogation Request Status
-          schema:
-            $ref: '#/definitions/InterrogationStatus'
-      summary: Cancel an unfinished interrogation request
-      description: This request will return all already interrogated image results.
-      operationId: delete_interrogation_status
       parameters:
         - name: Client-Agent
           in: header
@@ -1251,46 +1251,6 @@ paths:
           description: An optional fields mask
       tags:
         - v2
-    get:
-      responses:
-        "403":
-          description: Access Denied
-          schema:
-            $ref: '#/definitions/RequestError'
-        "401":
-          description: Invalid API Key
-          schema:
-            $ref: '#/definitions/RequestError'
-        "400":
-          description: Validation Error
-          schema:
-            $ref: '#/definitions/RequestError'
-        "200":
-          description: An IP timeout entry
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/IPTimeout'
-      summary: Return all existing IP Block timeouts
-      operationId: get_operations_ip
-      parameters:
-        - name: apikey
-          in: header
-          type: string
-          required: true
-          description: A mod API key.
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version.
-          default: unknown:0:unknown
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
     delete:
       responses:
         "403":
@@ -1328,6 +1288,46 @@ paths:
           in: body
           schema:
             $ref: '#/definitions/DeleteTimeoutIPInput'
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+    get:
+      responses:
+        "403":
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+        "401":
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        "400":
+          description: Validation Error
+          schema:
+            $ref: '#/definitions/RequestError'
+        "200":
+          description: An IP timeout entry
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IPTimeout'
+      summary: Return all existing IP Block timeouts
+      operationId: get_operations_ip
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          required: true
+          description: A mod API key.
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version.
+          default: unknown:0:unknown
         - name: X-Fields
           in: header
           type: string
@@ -1435,35 +1435,6 @@ paths:
         in: path
         required: true
         type: string
-    get:
-      responses:
-        "404":
-          description: Shared Key Not Found
-          schema:
-            $ref: '#/definitions/RequestError'
-        "401":
-          description: Invalid API Key
-          schema:
-            $ref: '#/definitions/RequestError'
-        "200":
-          description: Shared Key Details
-          schema:
-            $ref: '#/definitions/SharedKeyDetails'
-      summary: Get details about an existing Shared Key
-      operationId: get_shared_key_single
-      parameters:
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version.
-          default: unknown:0:unknown
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
     patch:
       responses:
         "404":
@@ -1529,6 +1500,35 @@ paths:
           type: string
           required: true
           description: User API key.
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version.
+          default: unknown:0:unknown
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+    get:
+      responses:
+        "404":
+          description: Shared Key Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+        "401":
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        "200":
+          description: Shared Key Details
+          schema:
+            $ref: '#/definitions/SharedKeyDetails'
+      summary: Get details about an existing Shared Key
+      operationId: get_shared_key_single
+      parameters:
         - name: Client-Agent
           in: header
           type: string
@@ -1711,27 +1711,6 @@ paths:
       tags:
         - v2
   /v2/status/modes:
-    get:
-      responses:
-        "200":
-          description: AI Horde Maintenance
-          schema:
-            $ref: '#/definitions/HordeModes'
-      summary: Horde Maintenance Mode Status
-      description: Use this endpoint to quicky determine if this horde is in maintenance, invite_only or raid mode.
-      operationId: get_horde_modes
-      parameters:
-        - name: apikey
-          in: header
-          type: string
-          description: The Admin or Owner API key.
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
     put:
       responses:
         "403":
@@ -1767,6 +1746,27 @@ paths:
                 type: boolean
               raid:
                 type: boolean
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+    get:
+      responses:
+        "200":
+          description: AI Horde Maintenance
+          schema:
+            $ref: '#/definitions/HordeModes'
+      summary: Horde Maintenance Mode Status
+      description: Use this endpoint to quicky determine if this horde is in maintenance, invite_only or raid mode.
+      operationId: get_horde_modes
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          description: The Admin or Owner API key.
         - name: X-Fields
           in: header
           type: string
@@ -1894,43 +1894,6 @@ paths:
         in: path
         required: true
         type: string
-    get:
-      responses:
-        "404":
-          description: Team Not Found
-          schema:
-            $ref: '#/definitions/RequestError'
-        "403":
-          description: Access Denied
-          schema:
-            $ref: '#/definitions/RequestError'
-        "401":
-          description: Invalid API Key
-          schema:
-            $ref: '#/definitions/RequestError'
-        "200":
-          description: Team Details
-          schema:
-            $ref: '#/definitions/TeamDetails'
-      summary: Details of a worker Team
-      operationId: get_team_single
-      parameters:
-        - name: apikey
-          in: header
-          type: string
-          description: The Moderator or Owner API key.
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version.
-          default: unknown:0:unknown
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
     patch:
       responses:
         "404":
@@ -2017,6 +1980,43 @@ paths:
           description: An optional fields mask
       tags:
         - v2
+    get:
+      responses:
+        "404":
+          description: Team Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+        "403":
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+        "401":
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        "200":
+          description: Team Details
+          schema:
+            $ref: '#/definitions/TeamDetails'
+      summary: Details of a worker Team
+      operationId: get_team_single
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          description: The Moderator or Owner API key.
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version.
+          default: unknown:0:unknown
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
   /v2/users:
     get:
       responses:
@@ -2055,39 +2055,6 @@ paths:
         in: path
         required: true
         type: string
-    get:
-      responses:
-        "404":
-          description: User Not Found
-          schema:
-            $ref: '#/definitions/RequestError'
-        "401":
-          description: Invalid API Key
-          schema:
-            $ref: '#/definitions/RequestError'
-        "200":
-          description: User Details
-          schema:
-            $ref: '#/definitions/UserDetails'
-      summary: Details and statistics about a specific user
-      operationId: get_user_single
-      parameters:
-        - name: apikey
-          in: header
-          type: string
-          description: The Admin, Mod or Owner API key.
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version.
-          default: unknown:0:unknown
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
     put:
       responses:
         "404":
@@ -2135,6 +2102,39 @@ paths:
           description: An optional fields mask
       tags:
         - v2
+    get:
+      responses:
+        "404":
+          description: User Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+        "401":
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        "200":
+          description: User Details
+          schema:
+            $ref: '#/definitions/UserDetails'
+      summary: Details and statistics about a specific user
+      operationId: get_user_single
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          description: The Admin, Mod or Owner API key.
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version.
+          default: unknown:0:unknown
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
   /v2/workers:
     get:
       responses:
@@ -2173,46 +2173,6 @@ paths:
         in: path
         required: true
         type: string
-    get:
-      responses:
-        "404":
-          description: Worker Not Found
-          schema:
-            $ref: '#/definitions/RequestError'
-        "403":
-          description: Access Denied
-          schema:
-            $ref: '#/definitions/RequestError'
-        "401":
-          description: Invalid API Key
-          schema:
-            $ref: '#/definitions/RequestError'
-        "200":
-          description: Worker Details
-          schema:
-            $ref: '#/definitions/WorkerDetails'
-      summary: Details of a registered worker
-      description: |-
-        Can retrieve the details of a worker even if inactive
-        (A worker is considered inactive if it has not checked in for 5 minutes)
-      operationId: get_worker_single
-      parameters:
-        - name: apikey
-          in: header
-          type: string
-          description: The Moderator or Owner API key.
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version.
-          default: unknown:0:unknown
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
     delete:
       responses:
         "404":
@@ -2293,6 +2253,46 @@ paths:
           in: body
           schema:
             $ref: '#/definitions/ModifyWorkerInput'
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+    get:
+      responses:
+        "404":
+          description: Worker Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+        "403":
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+        "401":
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        "200":
+          description: Worker Details
+          schema:
+            $ref: '#/definitions/WorkerDetails'
+      summary: Details of a registered worker
+      description: |-
+        Can retrieve the details of a worker even if inactive
+        (A worker is considered inactive if it has not checked in for 5 minutes)
+      operationId: get_worker_single
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          description: The Moderator or Owner API key.
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version.
+          default: unknown:0:unknown
         - name: X-Fields
           in: header
           type: string
@@ -2418,22 +2418,22 @@ definitions:
       sampler_name:
         type: string
         default: k_euler_a
-        example: DDIM
+        example: k_dpmpp_sde
         enum:
+          - k_dpmpp_sde
+          - k_dpm_2_a
+          - dpmsolver
+          - k_euler
+          - k_dpmpp_2s_a
+          - k_dpm_fast
+          - k_heun
+          - k_dpmpp_2m
           - DDIM
           - k_euler_a
-          - k_lms
-          - k_heun
-          - k_dpmpp_2s_a
           - k_dpm_2
-          - k_dpmpp_sde
-          - k_euler
-          - dpmsolver
-          - k_dpmpp_2m
-          - k_dpm_fast
-          - lcm
-          - k_dpm_2_a
+          - k_lms
           - k_dpm_adaptive
+          - lcm
       cfg_scale:
         type: number
         default: 7.5

@@ -1,1 +1,0 @@
-openapi-generator-cli generate -g csharp-netcore -c config.json -i swagger.yaml
