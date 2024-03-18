@@ -2,5 +2,5 @@
   "apiName": "StableHorde",
   "netCoreProjectFile": true,
   "targetFramework": "netstandard2.0",
-  "packageName": "StableHorde.Api"
+  "packageName": "Knedlex.StableHorde.Api"
 }
