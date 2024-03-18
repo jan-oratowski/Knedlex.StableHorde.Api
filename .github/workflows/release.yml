@@ -21,7 +21,5 @@ jobs:
       run: dotnet build -c Release
     - name: Pack nugets
       run: dotnet pack -c Release --no-build --output .
-    - name: Push generated package to GitHub registry
-      run: dotnet nuget push "*.nupkg" --source github
     - name: Push to NuGet
       run: dotnet nuget push "*.nupkg" --api-key ${{secrets.nuget_api_key}} --source https://api.nuget.org/v3/index.json
