@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.AddWorkerTimeout
+# Knedlex.StableHorde.Api.Model.AddWorkerTimeout
 
 ## Properties
 

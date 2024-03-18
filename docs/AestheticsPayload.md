@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.AestheticsPayload
+# Knedlex.StableHorde.Api.Model.AestheticsPayload
 
 ## Properties
 

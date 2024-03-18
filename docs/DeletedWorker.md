@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.DeletedWorker
+# Knedlex.StableHorde.Api.Model.DeletedWorker
 
 ## Properties
 

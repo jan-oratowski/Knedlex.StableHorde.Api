@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.ModelPayloadTextualInversionsStable
+# Knedlex.StableHorde.Api.Model.ModelPayloadTextualInversionsStable
 
 ## Properties
 

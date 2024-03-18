@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.PostAwardKudosRequest
+# Knedlex.StableHorde.Api.Model.PostAwardKudosRequest
 
 ## Properties
 

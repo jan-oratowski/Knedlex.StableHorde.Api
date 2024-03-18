@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.ModifyTeam
+# Knedlex.StableHorde.Api.Model.ModifyTeam
 
 ## Properties
 

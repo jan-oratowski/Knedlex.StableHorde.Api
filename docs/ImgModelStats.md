@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.ImgModelStats
+# Knedlex.StableHorde.Api.Model.ImgModelStats
 
 ## Properties
 

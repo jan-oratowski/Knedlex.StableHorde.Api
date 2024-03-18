@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.ContributionsDetails
+# Knedlex.StableHorde.Api.Model.ContributionsDetails
 
 ## Properties
 

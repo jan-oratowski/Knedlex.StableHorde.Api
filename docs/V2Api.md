@@ -1,4 +1,4 @@
-# StableHorde.Api.Api.V2Api
+# Knedlex.StableHorde.Api.Api.V2Api
 
 All URIs are relative to */api*
 
@@ -65,7 +65,7 @@ All URIs are relative to */api*
 | [**PutUserSingle**](V2Api.md#putusersingle) | **PUT** /v2/users/{user_id} | Endpoint for horde admins to perform operations on users |
 | [**PutWorkerSingle**](V2Api.md#putworkersingle) | **PUT** /v2/workers/{worker_id} |  |
 
-<a name="deletefiltersingle"></a>
+<a id="deletefiltersingle"></a>
 # **DeleteFilterSingle**
 > SimpleResponse DeleteFilterSingle (string filterId, string apikey, string clientAgent = null, string xFields = null)
 
@@ -75,9 +75,9 @@ Moderator Only: Delete a regex filter
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -163,7 +163,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleteimageasyncstatus"></a>
+<a id="deleteimageasyncstatus"></a>
 # **DeleteImageAsyncStatus**
 > RequestStatusStable DeleteImageAsyncStatus (string id, string clientAgent = null, string xFields = null)
 
@@ -175,9 +175,9 @@ This request will include all already generated images in base64 encoded .webp f
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -259,7 +259,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleteinterrogationstatus"></a>
+<a id="deleteinterrogationstatus"></a>
 # **DeleteInterrogationStatus**
 > InterrogationStatus DeleteInterrogationStatus (string id, string clientAgent = null, string xFields = null)
 
@@ -271,9 +271,9 @@ This request will return all already interrogated image results.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -355,7 +355,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleteoperationsblockworkerip"></a>
+<a id="deleteoperationsblockworkerip"></a>
 # **DeleteOperationsBlockWorkerIp**
 > SimpleResponse DeleteOperationsBlockWorkerIp (string workerId, string apikey, string clientAgent = null, string xFields = null)
 
@@ -367,9 +367,9 @@ Only usable by horde moderators
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -455,7 +455,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleteoperationsip"></a>
+<a id="deleteoperationsip"></a>
 # **DeleteOperationsIp**
 > SimpleResponse DeleteOperationsIp (string apikey, DeleteTimeoutIPInput payload, string clientAgent = null, string xFields = null)
 
@@ -467,9 +467,9 @@ Only usable by horde moderators
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -555,7 +555,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deletesharedkeysingle"></a>
+<a id="deletesharedkeysingle"></a>
 # **DeleteSharedKeySingle**
 > SimpleResponse DeleteSharedKeySingle (string sharedkeyId, string apikey, string clientAgent = null, string xFields = null)
 
@@ -565,9 +565,9 @@ Delete an existing SharedKey for this user
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -651,7 +651,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleteteamsingle"></a>
+<a id="deleteteamsingle"></a>
 # **DeleteTeamSingle**
 > DeletedTeam DeleteTeamSingle (string teamId, string clientAgent = null, string apikey = null, string xFields = null)
 
@@ -663,9 +663,9 @@ Only the team's creator or a horde moderator can use this endpoint. This action 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -751,7 +751,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deletetextasyncstatus"></a>
+<a id="deletetextasyncstatus"></a>
 # **DeleteTextAsyncStatus**
 > RequestStatusKobold DeleteTextAsyncStatus (string id, string clientAgent = null, string xFields = null)
 
@@ -763,9 +763,9 @@ This request will include all already generated texts.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -847,7 +847,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleteworkersingle"></a>
+<a id="deleteworkersingle"></a>
 # **DeleteWorkerSingle**
 > DeletedWorker DeleteWorkerSingle (string workerId, string apikey = null, string clientAgent = null, string xFields = null)
 
@@ -859,9 +859,9 @@ This will delete the worker and their statistics. Will not affect the kudos gene
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -947,7 +947,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getfilterregex"></a>
+<a id="getfilterregex"></a>
 # **GetFilterRegex**
 > List&lt;FilterRegex&gt; GetFilterRegex (string apikey, string clientAgent = null, int? filterType = null, string xFields = null)
 
@@ -957,9 +957,9 @@ Moderator Only: A List all filters, or filtered by the query
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -1045,7 +1045,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getfiltersingle"></a>
+<a id="getfiltersingle"></a>
 # **GetFilterSingle**
 > List&lt;FilterDetails&gt; GetFilterSingle (string filterId, string apikey, string clientAgent = null, string xFields = null)
 
@@ -1055,9 +1055,9 @@ Moderator Only: Display a single filter
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -1143,7 +1143,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getfilters"></a>
+<a id="getfilters"></a>
 # **GetFilters**
 > List&lt;FilterDetails&gt; GetFilters (string apikey, string clientAgent = null, int? filterType = null, string contains = null, string xFields = null)
 
@@ -1153,9 +1153,9 @@ Moderator Only: A List all filters, or filtered by the query
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -1243,7 +1243,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getfinduser"></a>
+<a id="getfinduser"></a>
 # **GetFindUser**
 > UserDetails GetFindUser (string apikey = null, string clientAgent = null, string xFields = null)
 
@@ -1255,9 +1255,9 @@ This can be used to verify a user exists
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -1340,7 +1340,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getheartbeat"></a>
+<a id="getheartbeat"></a>
 # **GetHeartbeat**
 > void GetHeartbeat (string clientAgent = null)
 
@@ -1350,9 +1350,9 @@ If this loads, this node is available
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -1425,7 +1425,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="gethordeload"></a>
+<a id="gethordeload"></a>
 # **GetHordeLoad**
 > HordePerformance GetHordeLoad (string clientAgent = null, string xFields = null)
 
@@ -1435,9 +1435,9 @@ Details about the current performance of this Horde
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -1516,7 +1516,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="gethordemodes"></a>
+<a id="gethordemodes"></a>
 # **GetHordeModes**
 > HordeModes GetHordeModes (string apikey = null, string xFields = null)
 
@@ -1528,9 +1528,9 @@ Use this endpoint to quicky determine if this horde is in maintenance, invite_on
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -1609,7 +1609,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="gethordenews"></a>
+<a id="gethordenews"></a>
 # **GetHordeNews**
 > List&lt;Newspiece&gt; GetHordeNews (string clientAgent = null, string xFields = null)
 
@@ -1619,9 +1619,9 @@ Read the latest happenings on the horde
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -1700,7 +1700,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getimageasynccheck"></a>
+<a id="getimageasynccheck"></a>
 # **GetImageAsyncCheck**
 > RequestStatusCheck GetImageAsyncCheck (string id, string clientAgent = null, string xFields = null)
 
@@ -1712,9 +1712,9 @@ Use this request to check the status of a currently running asynchronous request
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -1796,7 +1796,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getimageasyncstatus"></a>
+<a id="getimageasyncstatus"></a>
 # **GetImageAsyncStatus**
 > RequestStatusStable GetImageAsyncStatus (string id, string clientAgent = null, string xFields = null)
 
@@ -1808,9 +1808,9 @@ This request will include all already generated images in download URL or base64
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -1892,7 +1892,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getimagehordestatsmodels"></a>
+<a id="getimagehordestatsmodels"></a>
 # **GetImageHordeStatsModels**
 > ImgModelStats GetImageHordeStatsModels (string clientAgent = null, string xFields = null)
 
@@ -1902,9 +1902,9 @@ Details how many images were generated per model for the past day, month and tot
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -1983,7 +1983,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getimagehordestatstotals"></a>
+<a id="getimagehordestatstotals"></a>
 # **GetImageHordeStatsTotals**
 > StatsImgTotals GetImageHordeStatsTotals (string clientAgent = null, string xFields = null)
 
@@ -1995,9 +1995,9 @@ Also shows the amount of pixelsteps for the same timeframe.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -2076,7 +2076,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getinterrogationstatus"></a>
+<a id="getinterrogationstatus"></a>
 # **GetInterrogationStatus**
 > InterrogationStatus GetInterrogationStatus (string id, string clientAgent = null, string xFields = null)
 
@@ -2088,9 +2088,9 @@ This request will include all already generated images. As such, you are request
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -2172,7 +2172,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getmodelsingle"></a>
+<a id="getmodelsingle"></a>
 # **GetModelSingle**
 > ActiveModel GetModelSingle (string modelName, string clientAgent = null, string xFields = null)
 
@@ -2182,9 +2182,9 @@ Returns all the statistics of a specific model in this horde
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -2265,7 +2265,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getmodels"></a>
+<a id="getmodels"></a>
 # **GetModels**
 > List&lt;ActiveModel&gt; GetModels (string clientAgent = null, string type = null, int? minCount = null, int? maxCount = null, string xFields = null)
 
@@ -2275,9 +2275,9 @@ Returns a list of models active currently in this horde
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -2362,7 +2362,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getoperationsip"></a>
+<a id="getoperationsip"></a>
 # **GetOperationsIp**
 > List&lt;IPTimeout&gt; GetOperationsIp (string apikey, string clientAgent = null, string xFields = null)
 
@@ -2372,9 +2372,9 @@ Return all existing IP Block timeouts
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -2458,7 +2458,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getoperationsipsingle"></a>
+<a id="getoperationsipsingle"></a>
 # **GetOperationsIpSingle**
 > List&lt;IPTimeout&gt; GetOperationsIpSingle (string ipaddr, string apikey, string clientAgent = null, string xFields = null)
 
@@ -2468,9 +2468,9 @@ Check if an IP or CIDR is in timeout
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -2556,7 +2556,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getsharedkeysingle"></a>
+<a id="getsharedkeysingle"></a>
 # **GetSharedKeySingle**
 > SharedKeyDetails GetSharedKeySingle (string sharedkeyId, string clientAgent = null, string xFields = null)
 
@@ -2566,9 +2566,9 @@ Get details about an existing Shared Key
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -2651,7 +2651,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getteamsingle"></a>
+<a id="getteamsingle"></a>
 # **GetTeamSingle**
 > TeamDetails GetTeamSingle (string teamId, string apikey = null, string clientAgent = null, string xFields = null)
 
@@ -2661,9 +2661,9 @@ Details of a worker Team
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -2749,7 +2749,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getteams"></a>
+<a id="getteams"></a>
 # **GetTeams**
 > List&lt;TeamDetails&gt; GetTeams (string clientAgent = null, string xFields = null)
 
@@ -2759,9 +2759,9 @@ A List with the details of all teams
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -2840,7 +2840,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="gettextasyncstatus"></a>
+<a id="gettextasyncstatus"></a>
 # **GetTextAsyncStatus**
 > RequestStatusKobold GetTextAsyncStatus (string id, string clientAgent = null, string xFields = null)
 
@@ -2852,9 +2852,9 @@ This request will include all already generated texts.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -2936,7 +2936,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="gettexthordestatsmodels"></a>
+<a id="gettexthordestatsmodels"></a>
 # **GetTextHordeStatsModels**
 > TxtModelStats GetTextHordeStatsModels (string clientAgent = null, string xFields = null)
 
@@ -2946,9 +2946,9 @@ Details how many texts were generated per model for the past day, month and tota
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -3027,7 +3027,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="gettexthordestatstotals"></a>
+<a id="gettexthordestatstotals"></a>
 # **GetTextHordeStatsTotals**
 > StatsTxtTotals GetTextHordeStatsTotals (string clientAgent = null, string xFields = null)
 
@@ -3039,9 +3039,9 @@ Also shows the amount of pixelsteps for the same timeframe.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -3120,7 +3120,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getusersingle"></a>
+<a id="getusersingle"></a>
 # **GetUserSingle**
 > UserDetails GetUserSingle (string userId, string apikey = null, string clientAgent = null, string xFields = null)
 
@@ -3130,9 +3130,9 @@ Details and statistics about a specific user
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -3217,7 +3217,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getusers"></a>
+<a id="getusers"></a>
 # **GetUsers**
 > UserDetails GetUsers (string clientAgent = null, int? page = null, string sort = null, string xFields = null)
 
@@ -3227,9 +3227,9 @@ A List with the details and statistic of all registered users
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -3312,7 +3312,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getworkersingle"></a>
+<a id="getworkersingle"></a>
 # **GetWorkerSingle**
 > WorkerDetails GetWorkerSingle (string workerId, string apikey = null, string clientAgent = null, string xFields = null)
 
@@ -3324,9 +3324,9 @@ Can retrieve the details of a worker even if inactive (A worker is considered in
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -3412,7 +3412,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getworkers"></a>
+<a id="getworkers"></a>
 # **GetWorkers**
 > List&lt;WorkerDetails&gt; GetWorkers (string apikey = null, string clientAgent = null, string type = null, string xFields = null)
 
@@ -3422,9 +3422,9 @@ A List with the details of all registered and active workers
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -3507,7 +3507,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="patchfiltersingle"></a>
+<a id="patchfiltersingle"></a>
 # **PatchFilterSingle**
 > FilterDetails PatchFilterSingle (string filterId, string apikey, PatchExistingFilter payload, string clientAgent = null, string xFields = null)
 
@@ -3517,9 +3517,9 @@ Moderator Only: Modify an existing regex filter
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -3607,7 +3607,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="patchsharedkeysingle"></a>
+<a id="patchsharedkeysingle"></a>
 # **PatchSharedKeySingle**
 > SharedKeyDetails PatchSharedKeySingle (string sharedkeyId, string apikey, SharedKeyInput payload, string clientAgent = null, string xFields = null)
 
@@ -3617,9 +3617,9 @@ Modify an existing Shared Key
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -3708,7 +3708,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="patchteamsingle"></a>
+<a id="patchteamsingle"></a>
 # **PatchTeamSingle**
 > ModifyTeam PatchTeamSingle (string teamId, ModifyTeamInput payload, string apikey = null, string clientAgent = null, string xFields = null)
 
@@ -3718,9 +3718,9 @@ Update a Team's information
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -3809,7 +3809,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postaesthetics"></a>
+<a id="postaesthetics"></a>
 # **PostAesthetics**
 > GenerationSubmitted PostAesthetics (string id, AestheticsPayload payload, string clientAgent = null, string xFields = null)
 
@@ -3821,9 +3821,9 @@ AI The request has to have been sent as shared: true. You can select the best im
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -3909,7 +3909,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postawardkudos"></a>
+<a id="postawardkudos"></a>
 # **PostAwardKudos**
 > KudosAwarded PostAwardKudos (string apikey, PostAwardKudosRequest payload, string xFields = null)
 
@@ -3921,9 +3921,9 @@ This API can only be used through privileged access.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -4007,7 +4007,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postfilters"></a>
+<a id="postfilters"></a>
 # **PostFilters**
 > FilterPromptSuspicion PostFilters (string apikey, PostFiltersRequest payload, string clientAgent = null, string xFields = null)
 
@@ -4017,9 +4017,9 @@ Moderator Only: Check The suspicion of the provided prompt
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -4105,7 +4105,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postimageasyncgenerate"></a>
+<a id="postimageasyncgenerate"></a>
 # **PostImageAsyncGenerate**
 > RequestAsync PostImageAsyncGenerate (string apikey, GenerationInputStable payload, string clientAgent = null, string xFields = null)
 
@@ -4117,9 +4117,9 @@ This endpoint will immediately return with the UUID of the request for generatio
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -4206,7 +4206,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postimagejobpop"></a>
+<a id="postimagejobpop"></a>
 # **PostImageJobPop**
 > GenerationPayloadStable PostImageJobPop (string apikey, PopInputStable payload, string xFields = null)
 
@@ -4218,9 +4218,9 @@ This endpoint is used by registered workers only
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -4304,7 +4304,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postimagejobsubmit"></a>
+<a id="postimagejobsubmit"></a>
 # **PostImageJobSubmit**
 > GenerationSubmitted PostImageJobSubmit (string apikey, SubmitInputStable payload, string xFields = null)
 
@@ -4316,9 +4316,9 @@ This endpoint is used by registered workers only
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -4403,7 +4403,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postinterrogate"></a>
+<a id="postinterrogate"></a>
 # **PostInterrogate**
 > RequestInterrogationResponse PostInterrogate (string apikey, ModelInterrogationInputStable payload, string clientAgent = null, string xFields = null)
 
@@ -4415,9 +4415,9 @@ This endpoint will immediately return with the UUID of the request for interroga
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -4504,7 +4504,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postinterrogatepop"></a>
+<a id="postinterrogatepop"></a>
 # **PostInterrogatePop**
 > InterrogationPopPayload PostInterrogatePop (string apikey, InterrogationPopInput payload, string xFields = null)
 
@@ -4516,9 +4516,9 @@ This endpoint is used by registered workers only
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -4602,7 +4602,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postinterrogatesubmit"></a>
+<a id="postinterrogatesubmit"></a>
 # **PostInterrogateSubmit**
 > GenerationSubmitted PostInterrogateSubmit (string apikey, PostInterrogateSubmitRequest payload, string xFields = null)
 
@@ -4614,9 +4614,9 @@ This endpoint is used by registered workers only
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -4701,7 +4701,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postoperationsip"></a>
+<a id="postoperationsip"></a>
 # **PostOperationsIp**
 > SimpleResponse PostOperationsIp (string apikey, AddTimeoutIPInput payload, string clientAgent = null, string xFields = null)
 
@@ -4713,9 +4713,9 @@ Only usable by horde moderators
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -4801,7 +4801,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postteams"></a>
+<a id="postteams"></a>
 # **PostTeams**
 > ModifyTeam PostTeams (string apikey, CreateTeamInput payload, string clientAgent = null, string xFields = null)
 
@@ -4813,9 +4813,9 @@ Only trusted users can create new teams.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -4901,7 +4901,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="posttextasyncgenerate"></a>
+<a id="posttextasyncgenerate"></a>
 # **PostTextAsyncGenerate**
 > RequestAsync PostTextAsyncGenerate (string apikey, GenerationInputKobold payload, string clientAgent = null, string xFields = null)
 
@@ -4913,9 +4913,9 @@ This endpoint will immediately return with the UUID of the request for generatio
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -5002,7 +5002,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="posttextjobpop"></a>
+<a id="posttextjobpop"></a>
 # **PostTextJobPop**
 > GenerationPayload PostTextJobPop (string apikey, PopInputKobold payload, string xFields = null)
 
@@ -5014,9 +5014,9 @@ This endpoint is used by registered workers only
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -5100,7 +5100,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="posttextjobsubmit"></a>
+<a id="posttextjobsubmit"></a>
 # **PostTextJobSubmit**
 > GenerationSubmitted PostTextJobSubmit (string apikey, SubmitInputKobold payload, string xFields = null)
 
@@ -5112,9 +5112,9 @@ This endpoint is used by registered workers only
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -5199,7 +5199,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="posttransferkudos"></a>
+<a id="posttransferkudos"></a>
 # **PostTransferKudos**
 > KudosTransferred PostTransferKudos (string apikey, PostAwardKudosRequest payload, string clientAgent = null, string xFields = null)
 
@@ -5209,9 +5209,9 @@ Transfer Kudos to another registed user
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -5296,7 +5296,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="putfilters"></a>
+<a id="putfilters"></a>
 # **PutFilters**
 > FilterDetails PutFilters (string apikey, PutNewFilter payload, string clientAgent = null, string xFields = null)
 
@@ -5306,9 +5306,9 @@ Moderator Only: Add a new regex filter
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -5394,7 +5394,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="puthordemodes"></a>
+<a id="puthordemodes"></a>
 # **PutHordeModes**
 > HordeModes PutHordeModes (string apikey, PutHordeModesRequest payload, string xFields = null)
 
@@ -5406,9 +5406,9 @@ Endpoint for admins to (un)set the horde into maintenance, invite_only or raid m
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -5491,7 +5491,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="putoperationsblockworkerip"></a>
+<a id="putoperationsblockworkerip"></a>
 # **PutOperationsBlockWorkerIp**
 > SimpleResponse PutOperationsBlockWorkerIp (string workerId, string apikey, AddWorkerTimeout payload, string clientAgent = null, string xFields = null)
 
@@ -5503,9 +5503,9 @@ Only usable by horde moderators
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -5593,7 +5593,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="putsharedkey"></a>
+<a id="putsharedkey"></a>
 # **PutSharedKey**
 > SharedKeyDetails PutSharedKey (string apikey, SharedKeyInput payload, string clientAgent = null, string xFields = null)
 
@@ -5603,9 +5603,9 @@ Create a new SharedKey for this user
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -5692,7 +5692,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="putusersingle"></a>
+<a id="putusersingle"></a>
 # **PutUserSingle**
 > ModifyUser PutUserSingle (string userId, string apikey, ModifyUserInput payload, string clientAgent = null, string xFields = null)
 
@@ -5702,9 +5702,9 @@ Endpoint for horde admins to perform operations on users
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {
@@ -5793,7 +5793,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="putworkersingle"></a>
+<a id="putworkersingle"></a>
 # **PutWorkerSingle**
 > ModifyWorker PutWorkerSingle (string workerId, string apikey, ModifyWorkerInput payload, string clientAgent = null, string xFields = null)
 
@@ -5803,9 +5803,9 @@ No authorization required
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using StableHorde.Api.Api;
-using StableHorde.Api.Client;
-using StableHorde.Api.Model;
+using Knedlex.StableHorde.Api.Api;
+using Knedlex.StableHorde.Api.Client;
+using Knedlex.StableHorde.Api.Model;
 
 namespace Example
 {

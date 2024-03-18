@@ -1,11 +1,11 @@
-# StableHorde.Api.Model.GenerationInputKobold
+# Knedlex.StableHorde.Api.Model.GenerationInputKobold
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Prompt** | **string** | The prompt which will be sent to KoboldAI to generate text. | [optional] 
-**Params** | [**ModelGenerationInputKobold**](ModelGenerationInputKobold.md) |  | [optional] 
+**VarParams** | [**ModelGenerationInputKobold**](ModelGenerationInputKobold.md) |  | [optional] 
 **Softprompt** | **string** | Specify which softpompt needs to be used to service this request. | [optional] 
 **TrustedWorkers** | **bool** | When true, only trusted workers will serve this request. When False, Evaluating workers will also be used which can increase speed but adds more risk! | [optional] [default to false]
 **SlowWorkers** | **bool** | When True, allows slower workers to pick up this request. Disabling this incurs an extra kudos cost. | [optional] [default to true]

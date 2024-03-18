@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.RequestSingleWarning
+# Knedlex.StableHorde.Api.Model.RequestSingleWarning
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.TeamDetails
+# Knedlex.StableHorde.Api.Model.TeamDetails
 
 ## Properties
 

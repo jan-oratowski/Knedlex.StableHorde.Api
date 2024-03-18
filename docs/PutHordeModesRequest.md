@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.PutHordeModesRequest
+# Knedlex.StableHorde.Api.Model.PutHordeModesRequest
 
 ## Properties
 

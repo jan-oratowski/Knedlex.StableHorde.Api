@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.SharedKeyInput
+# Knedlex.StableHorde.Api.Model.SharedKeyInput
 
 ## Properties
 

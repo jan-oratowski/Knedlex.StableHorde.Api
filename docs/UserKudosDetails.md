@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.UserKudosDetails
+# Knedlex.StableHorde.Api.Model.UserKudosDetails
 
 ## Properties
 

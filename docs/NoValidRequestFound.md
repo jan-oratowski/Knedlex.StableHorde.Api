@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.NoValidRequestFound
+# Knedlex.StableHorde.Api.Model.NoValidRequestFound
 
 ## Properties
 

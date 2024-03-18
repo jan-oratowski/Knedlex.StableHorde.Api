@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.RequestValidationError
+# Knedlex.StableHorde.Api.Model.RequestValidationError
 
 ## Properties
 

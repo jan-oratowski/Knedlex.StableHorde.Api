@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.RequestError
+# Knedlex.StableHorde.Api.Model.RequestError
 
 ## Properties
 

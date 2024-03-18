@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.SharedKeyDetails
+# Knedlex.StableHorde.Api.Model.SharedKeyDetails
 
 ## Properties
 

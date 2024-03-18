@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.HordePerformance
+# Knedlex.StableHorde.Api.Model.HordePerformance
 
 ## Properties
 

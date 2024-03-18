@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.CreateTeamInput
+# Knedlex.StableHorde.Api.Model.CreateTeamInput
 
 ## Properties
 

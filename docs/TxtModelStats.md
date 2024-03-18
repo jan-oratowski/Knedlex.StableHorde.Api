@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.TxtModelStats
+# Knedlex.StableHorde.Api.Model.TxtModelStats
 
 ## Properties
 

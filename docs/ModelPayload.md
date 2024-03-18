@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.ModelPayload
+# Knedlex.StableHorde.Api.Model.ModelPayload
 
 ## Properties
 

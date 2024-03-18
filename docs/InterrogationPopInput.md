@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.InterrogationPopInput
+# Knedlex.StableHorde.Api.Model.InterrogationPopInput
 
 ## Properties
 
@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The Name of the Worker. | [optional] 
 **PriorityUsernames** | **List&lt;string&gt;** |  | [optional] 
-**Forms** | **List&lt;string&gt;** |  | [optional] 
+**Forms** | **List&lt;InterrogationPopInput.FormsEnum&gt;** |  | [optional] 
 **Amount** | **int** | The amount of forms to pop at the same time. | [optional] 
 **BridgeAgent** | **string** | The worker name, version and website. | [optional] [default to "unknown"]
 **Threads** | **int** | How many threads this worker is running. This is used to accurately the current power available in the horde. | [optional] 

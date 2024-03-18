@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.SinglePeriodImgStat
+# Knedlex.StableHorde.Api.Model.SinglePeriodImgStat
 
 ## Properties
 

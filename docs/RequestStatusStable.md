@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.RequestStatusStable
+# Knedlex.StableHorde.Api.Model.RequestStatusStable
 
 ## Properties
 

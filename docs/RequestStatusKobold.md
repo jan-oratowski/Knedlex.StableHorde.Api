@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.RequestStatusKobold
+# Knedlex.StableHorde.Api.Model.RequestStatusKobold
 
 ## Properties
 

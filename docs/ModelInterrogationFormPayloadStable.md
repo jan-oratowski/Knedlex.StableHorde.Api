@@ -1,10 +1,10 @@
-# StableHorde.Api.Model.ModelInterrogationFormPayloadStable
+# Knedlex.StableHorde.Api.Model.ModelInterrogationFormPayloadStable
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**** | **Dictionary&lt;string, string&gt;** |  | [optional] 
+**Param** | **Dictionary&lt;string, string&gt;** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

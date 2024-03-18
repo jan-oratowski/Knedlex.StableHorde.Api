@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.ModelPayloadRootKobold
+# Knedlex.StableHorde.Api.Model.ModelPayloadRootKobold
 
 ## Properties
 

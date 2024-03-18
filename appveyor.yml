@@ -6,4 +6,4 @@ build_script:
 - dotnet build -c Release
 - dotnet test -c Release
 after_build:
-- dotnet pack .\src\StableHorde.Api\StableHorde.Api.csproj -o ../../output -c Release --no-build
+- dotnet pack .\src\Knedlex.StableHorde.Api\Knedlex.StableHorde.Api.csproj -o ../../output -c Release --no-build

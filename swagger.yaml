@@ -50,49 +50,6 @@ paths:
           description: An optional fields mask
       tags:
         - v2
-    put:
-      responses:
-        "403":
-          description: Access Denied
-          schema:
-            $ref: '#/definitions/RequestError'
-        "401":
-          description: Invalid API Key
-          schema:
-            $ref: '#/definitions/RequestError'
-        "400":
-          description: Validation Error
-          schema:
-            $ref: '#/definitions/RequestError'
-        "201":
-          description: New Filter details
-          schema:
-            $ref: '#/definitions/FilterDetails'
-      summary: 'Moderator Only: Add a new regex filter'
-      operationId: put_filters
-      parameters:
-        - name: apikey
-          in: header
-          type: string
-          required: true
-          description: A mod API key.
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version.
-          default: unknown:0:unknown
-        - name: payload
-          required: true
-          in: body
-          schema:
-            $ref: '#/definitions/PutNewFilter'
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
     get:
       responses:
         "403":
@@ -134,6 +91,49 @@ paths:
           in: query
           type: string
           description: Only return filter containing this word.
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
+    put:
+      responses:
+        "403":
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+        "401":
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        "400":
+          description: Validation Error
+          schema:
+            $ref: '#/definitions/RequestError'
+        "201":
+          description: New Filter details
+          schema:
+            $ref: '#/definitions/FilterDetails'
+      summary: 'Moderator Only: Add a new regex filter'
+      operationId: put_filters
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          required: true
+          description: A mod API key.
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version.
+          default: unknown:0:unknown
+        - name: payload
+          required: true
+          in: body
+          schema:
+            $ref: '#/definitions/PutNewFilter'
         - name: X-Fields
           in: header
           type: string
@@ -1711,6 +1711,27 @@ paths:
       tags:
         - v2
   /v2/status/modes:
+    get:
+      responses:
+        "200":
+          description: AI Horde Maintenance
+          schema:
+            $ref: '#/definitions/HordeModes'
+      summary: Horde Maintenance Mode Status
+      description: Use this endpoint to quicky determine if this horde is in maintenance, invite_only or raid mode.
+      operationId: get_horde_modes
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          description: The Admin or Owner API key.
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
     put:
       responses:
         "403":
@@ -1746,27 +1767,6 @@ paths:
                 type: boolean
               raid:
                 type: boolean
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
-    get:
-      responses:
-        "200":
-          description: AI Horde Maintenance
-          schema:
-            $ref: '#/definitions/HordeModes'
-      summary: Horde Maintenance Mode Status
-      description: Use this endpoint to quicky determine if this horde is in maintenance, invite_only or raid mode.
-      operationId: get_horde_modes
-      parameters:
-        - name: apikey
-          in: header
-          type: string
-          description: The Admin or Owner API key.
         - name: X-Fields
           in: header
           type: string
@@ -2055,6 +2055,39 @@ paths:
         in: path
         required: true
         type: string
+    get:
+      responses:
+        "404":
+          description: User Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+        "401":
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        "200":
+          description: User Details
+          schema:
+            $ref: '#/definitions/UserDetails'
+      summary: Details and statistics about a specific user
+      operationId: get_user_single
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          description: The Admin, Mod or Owner API key.
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version.
+          default: unknown:0:unknown
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
     put:
       responses:
         "404":
@@ -2095,39 +2128,6 @@ paths:
           in: body
           schema:
             $ref: '#/definitions/ModifyUserInput'
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
-    get:
-      responses:
-        "404":
-          description: User Not Found
-          schema:
-            $ref: '#/definitions/RequestError'
-        "401":
-          description: Invalid API Key
-          schema:
-            $ref: '#/definitions/RequestError'
-        "200":
-          description: User Details
-          schema:
-            $ref: '#/definitions/UserDetails'
-      summary: Details and statistics about a specific user
-      operationId: get_user_single
-      parameters:
-        - name: apikey
-          in: header
-          type: string
-          description: The Admin, Mod or Owner API key.
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version.
-          default: unknown:0:unknown
         - name: X-Fields
           in: header
           type: string
@@ -2214,6 +2214,46 @@ paths:
           description: An optional fields mask
       tags:
         - v2
+    get:
+      responses:
+        "404":
+          description: Worker Not Found
+          schema:
+            $ref: '#/definitions/RequestError'
+        "403":
+          description: Access Denied
+          schema:
+            $ref: '#/definitions/RequestError'
+        "401":
+          description: Invalid API Key
+          schema:
+            $ref: '#/definitions/RequestError'
+        "200":
+          description: Worker Details
+          schema:
+            $ref: '#/definitions/WorkerDetails'
+      summary: Details of a registered worker
+      description: |-
+        Can retrieve the details of a worker even if inactive
+        (A worker is considered inactive if it has not checked in for 5 minutes)
+      operationId: get_worker_single
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+          description: The Moderator or Owner API key.
+        - name: Client-Agent
+          in: header
+          type: string
+          description: The client name and version.
+          default: unknown:0:unknown
+        - name: X-Fields
+          in: header
+          type: string
+          format: mask
+          description: An optional fields mask
+      tags:
+        - v2
     put:
       responses:
         "404":
@@ -2253,46 +2293,6 @@ paths:
           in: body
           schema:
             $ref: '#/definitions/ModifyWorkerInput'
-        - name: X-Fields
-          in: header
-          type: string
-          format: mask
-          description: An optional fields mask
-      tags:
-        - v2
-    get:
-      responses:
-        "404":
-          description: Worker Not Found
-          schema:
-            $ref: '#/definitions/RequestError'
-        "403":
-          description: Access Denied
-          schema:
-            $ref: '#/definitions/RequestError'
-        "401":
-          description: Invalid API Key
-          schema:
-            $ref: '#/definitions/RequestError'
-        "200":
-          description: Worker Details
-          schema:
-            $ref: '#/definitions/WorkerDetails'
-      summary: Details of a registered worker
-      description: |-
-        Can retrieve the details of a worker even if inactive
-        (A worker is considered inactive if it has not checked in for 5 minutes)
-      operationId: get_worker_single
-      parameters:
-        - name: apikey
-          in: header
-          type: string
-          description: The Moderator or Owner API key.
-        - name: Client-Agent
-          in: header
-          type: string
-          description: The client name and version.
-          default: unknown:0:unknown
         - name: X-Fields
           in: header
           type: string
@@ -2418,22 +2418,22 @@ definitions:
       sampler_name:
         type: string
         default: k_euler_a
-        example: k_dpmpp_sde
+        example: k_lms
         enum:
-          - k_dpmpp_sde
-          - k_dpm_2_a
-          - dpmsolver
-          - k_euler
-          - k_dpmpp_2s_a
-          - k_dpm_fast
-          - k_heun
-          - k_dpmpp_2m
-          - DDIM
-          - k_euler_a
-          - k_dpm_2
           - k_lms
-          - k_dpm_adaptive
+          - k_dpmpp_sde
+          - k_euler
+          - k_dpm_2_a
+          - k_euler_a
+          - k_dpmpp_2m
+          - k_dpm_fast
           - lcm
+          - k_heun
+          - dpmsolver
+          - k_dpm_2
+          - k_dpm_adaptive
+          - DDIM
+          - k_dpmpp_2s_a
       cfg_scale:
         type: number
         default: 7.5
@@ -2597,7 +2597,7 @@ definitions:
     type: object
   ModelSpecialPayloadStable:
     properties:
-      '*':
+      param:
         type: object
         additionalProperties:
           type: object
@@ -4419,7 +4419,7 @@ definitions:
     type: object
   ModelInterrogationFormPayloadStable:
     properties:
-      '*':
+      param:
         type: object
         additionalProperties:
           type: string
@@ -4458,7 +4458,7 @@ definitions:
     type: object
   InterrogationFormResult:
     properties:
-      '*':
+      param:
         type: object
         additionalProperties:
           type: object
@@ -4577,7 +4577,7 @@ definitions:
       regex:
         type: string
         description: The regex for this filter.
-        example: ac.*
+        example: ac.param
       filter_type:
         type: integer
         description: The integer defining this filter type.
@@ -4619,7 +4619,7 @@ definitions:
       regex:
         type: string
         description: The regex for this filter.
-        example: ac.*
+        example: ac.param
       filter_type:
         type: integer
         description: The integer defining this filter type.
@@ -4657,7 +4657,7 @@ definitions:
       regex:
         type: string
         description: The regex for this filter.
-        example: ac.*
+        example: ac.param
       filter_type:
         type: integer
         description: The integer defining this filter type.
@@ -4705,7 +4705,7 @@ definitions:
     type: object
   SinglePeriodImgModelStats:
     properties:
-      '*':
+      param:
         type: object
         additionalProperties:
           type: integer
@@ -4735,7 +4735,7 @@ definitions:
     type: object
   SinglePeriodTxtModelStats:
     properties:
-      '*':
+      param:
         type: object
         additionalProperties:
           type: integer

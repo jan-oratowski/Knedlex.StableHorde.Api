@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.AestheticRating
+# Knedlex.StableHorde.Api.Model.AestheticRating
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.KudosTransferred
+# Knedlex.StableHorde.Api.Model.KudosTransferred
 
 ## Properties
 

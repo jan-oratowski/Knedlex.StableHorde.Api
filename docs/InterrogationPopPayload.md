@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.InterrogationPopPayload
+# Knedlex.StableHorde.Api.Model.InterrogationPopPayload
 
 ## Properties
 

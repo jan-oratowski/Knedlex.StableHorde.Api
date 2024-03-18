@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.ModelInterrogationInputStable
+# Knedlex.StableHorde.Api.Model.ModelInterrogationInputStable
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.FilterPromptSuspicion
+# Knedlex.StableHorde.Api.Model.FilterPromptSuspicion
 
 ## Properties
 

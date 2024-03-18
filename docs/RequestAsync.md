@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.RequestAsync
+# Knedlex.StableHorde.Api.Model.RequestAsync
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.DeletedTeam
+# Knedlex.StableHorde.Api.Model.DeletedTeam
 
 ## Properties
 

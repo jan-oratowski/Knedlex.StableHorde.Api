@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.DeleteTimeoutIPInput
+# Knedlex.StableHorde.Api.Model.DeleteTimeoutIPInput
 
 ## Properties
 

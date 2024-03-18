@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.PostFiltersRequest
+# Knedlex.StableHorde.Api.Model.PostFiltersRequest
 
 ## Properties
 

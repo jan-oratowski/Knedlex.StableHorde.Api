@@ -1,11 +1,11 @@
-# StableHorde.Api.Model.GenerationInputStable
+# Knedlex.StableHorde.Api.Model.GenerationInputStable
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Prompt** | **string** | The prompt which will be sent to Stable Diffusion to generate an image. | 
-**Params** | [**ModelGenerationInputStable**](ModelGenerationInputStable.md) |  | [optional] 
+**VarParams** | [**ModelGenerationInputStable**](ModelGenerationInputStable.md) |  | [optional] 
 **Nsfw** | **bool** | Set to true if this request is NSFW. This will skip workers which censor images. | [optional] [default to false]
 **TrustedWorkers** | **bool** | When true, only trusted workers will serve this request. When False, Evaluating workers will also be used which can increase speed but adds more risk! | [optional] [default to false]
 **SlowWorkers** | **bool** | When True, allows slower workers to pick up this request. Disabling this incurs an extra kudos cost. | [optional] [default to true]

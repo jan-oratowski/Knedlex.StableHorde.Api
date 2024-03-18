@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.ModelPayloadRootStable
+# Knedlex.StableHorde.Api.Model.ModelPayloadRootStable
 
 ## Properties
 
@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Height** | **int** | The height of the image to generate. | [optional] 
 **Width** | **int** | The width of the image to generate. | [optional] 
 **SeedVariation** | **int** | If passed with multiple n, the provided seed will be incremented every time by this value. | [optional] 
-**PostProcessing** | **List&lt;string&gt;** |  | [optional] 
+**PostProcessing** | **List&lt;ModelPayloadRootStable.PostProcessingEnum&gt;** |  | [optional] 
 **Karras** | **bool** | Set to True to enable karras noise scheduling tweaks. | [optional] [default to false]
 **Tiling** | **bool** | Set to True to create images that stitch together seamlessly. | [optional] [default to false]
 **HiresFix** | **bool** | Set to True to process the image at base resolution before upscaling and re-processing. | [optional] [default to false]

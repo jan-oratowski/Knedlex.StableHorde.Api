@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.PopInputKobold
+# Knedlex.StableHorde.Api.Model.PopInputKobold
 
 ## Properties
 

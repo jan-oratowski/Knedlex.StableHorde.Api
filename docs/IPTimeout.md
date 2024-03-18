@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.IPTimeout
+# Knedlex.StableHorde.Api.Model.IPTimeout
 
 ## Properties
 

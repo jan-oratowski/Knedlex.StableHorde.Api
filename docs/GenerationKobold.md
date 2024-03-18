@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.GenerationKobold
+# Knedlex.StableHorde.Api.Model.GenerationKobold
 
 ## Properties
 

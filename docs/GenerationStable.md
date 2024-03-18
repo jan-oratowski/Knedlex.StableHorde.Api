@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.GenerationStable
+# Knedlex.StableHorde.Api.Model.GenerationStable
 
 ## Properties
 

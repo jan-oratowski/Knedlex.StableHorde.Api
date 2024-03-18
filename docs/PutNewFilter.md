@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.PutNewFilter
+# Knedlex.StableHorde.Api.Model.PutNewFilter
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.NoValidInterrogationsFound
+# Knedlex.StableHorde.Api.Model.NoValidInterrogationsFound
 
 ## Properties
 

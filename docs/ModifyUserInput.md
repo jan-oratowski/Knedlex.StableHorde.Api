@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.ModifyUserInput
+# Knedlex.StableHorde.Api.Model.ModifyUserInput
 
 ## Properties
 

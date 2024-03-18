@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.MonthlyKudos
+# Knedlex.StableHorde.Api.Model.MonthlyKudos
 
 ## Properties
 

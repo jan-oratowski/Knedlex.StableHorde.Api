@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.SimpleResponse
+# Knedlex.StableHorde.Api.Model.SimpleResponse
 
 ## Properties
 

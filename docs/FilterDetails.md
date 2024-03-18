@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.FilterDetails
+# Knedlex.StableHorde.Api.Model.FilterDetails
 
 ## Properties
 

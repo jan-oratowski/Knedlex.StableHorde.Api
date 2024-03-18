@@ -1,4 +1,4 @@
-# StableHorde.Api.Model.SubmitInputKobold
+# Knedlex.StableHorde.Api.Model.SubmitInputKobold
 
 ## Properties
 
