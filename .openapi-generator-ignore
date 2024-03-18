@@ -22,6 +22,7 @@
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
 
+.gitignore
 appveyor.yml
 git_push.sh
-Knedlex.StableHorde.Api.csproj
+src/Knedlex.StableHorde.Api/Knedlex.StableHorde.Api.csproj
